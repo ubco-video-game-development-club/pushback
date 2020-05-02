@@ -17,6 +17,6 @@ public class Player : MonoBehaviour
     ///<summary>Move the player based on the user keyboard input.</summary>
     private void Move()
     {
-        
+        // Add stuff
     }
 }
