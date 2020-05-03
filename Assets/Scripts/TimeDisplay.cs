@@ -14,7 +14,7 @@ public class TimeDisplay : MonoBehaviour
 
     public void SetTime(float time)
     {
-        textComponent.text = "Score: " + time.ToString("f1") + "s";
+        textComponent.text = "Time: " + time.ToString("f1") + "s";
     }
 
     public void SetCompleted()
