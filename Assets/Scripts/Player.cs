@@ -6,20 +6,31 @@ public class Player : MonoBehaviour
 {
     public float movementSpeed = 1f;
 
+    private bool alive;
+
     void Start()
     {
-        
+        alive = true;
     }
 
     void Update()
     {
-        Move();
+        if (alive)
+        {
+            Move();
+        }
+    }
+
+    public void Die()
+    {
+        alive = false;
+        LevelController.instance.Lose();
     }
 
     ///<summary>Move the player based on the user keyboard input.</summary>
     private void Move()
     {
-        // Determine the player direction from keyboard input
+        // Determine the movement direction from keyboard input
         float dx = 0, dy = 0;
         if (Input.GetKey(KeyCode.A))
         {

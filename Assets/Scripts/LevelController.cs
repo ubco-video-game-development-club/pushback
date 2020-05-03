@@ -8,7 +8,6 @@ public class LevelController : MonoBehaviour
     public static LevelController instance;
 
     public string endMessage;
-
     public TimeDisplay timeDisplay;
     public MessageDisplay messageDisplay;
 
@@ -43,10 +42,17 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    public void EndGame()
+    public void Win()
     {
         isTimerActive = false;
-        timeDisplay.SetCompleted();
+        timeDisplay.SetCompleted(true);
+        messageDisplay.SetMessage(endMessage);
+    }
+
+    public void Lose()
+    {
+        isTimerActive = false;
+        timeDisplay.SetCompleted(false);
         messageDisplay.SetMessage(endMessage);
     }
 }
