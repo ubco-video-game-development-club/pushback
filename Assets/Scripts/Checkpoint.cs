@@ -17,5 +17,6 @@ public class Checkpoint : MonoBehaviour
     void OnTriggerEnter2D()
     {
         Debug.Log("Checkpoint reached!");
+        LevelController.instance.EndGame();
     }
 }
