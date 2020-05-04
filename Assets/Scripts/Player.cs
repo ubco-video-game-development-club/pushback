@@ -17,6 +17,14 @@ public class Player : MonoBehaviour
 
     private bool alive;
     private float shockwaveTimer;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     void Start()
     {
@@ -59,6 +67,14 @@ public class Player : MonoBehaviour
         {
             dy--;
         }
+
+        bool isMoving = dx != 0 || dy != 0;
+        animator.SetBool("IsMoving", isMoving);
+        if (dx != 0)
+        {
+            spriteRenderer.flipX = dx > 0;
+        }
+
         Vector3 direction = new Vector3(dx, dy).normalized;
         transform.position += direction * movementSpeed * Time.deltaTime;
     }
