@@ -8,9 +8,11 @@ public class LevelController : MonoBehaviour
     public static LevelController instance;
 
     public string endMessage;
+    public ScoreDisplay scoreDisplay;
     public TimeDisplay timeDisplay;
     public MessageDisplay messageDisplay;
 
+    private int totalScore;
     private float gameTimer;
     private bool isTimerActive;
 
@@ -42,9 +44,16 @@ public class LevelController : MonoBehaviour
         }
     }
 
+    public void AddScore(int score)
+    {
+        totalScore += score;
+        scoreDisplay.SetScore(totalScore);
+    }
+
     public void Win()
     {
         isTimerActive = false;
+        scoreDisplay.SetCompleted(true);
         timeDisplay.SetCompleted(true);
         messageDisplay.SetMessage(endMessage);
     }
@@ -52,6 +61,7 @@ public class LevelController : MonoBehaviour
     public void Lose()
     {
         isTimerActive = false;
+        scoreDisplay.SetCompleted(false);
         timeDisplay.SetCompleted(false);
         messageDisplay.SetMessage(endMessage);
     }
