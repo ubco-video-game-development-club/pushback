@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 1913947151
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a6a6100a79614194a954485e3012b2e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f063a915c0077e74a8044f871808799f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,5 +97,5 @@ MonoBehaviour:
   flameJetPrefab: {fileID: 3352776717205982845, guid: aa79f592f1564fc41a46880c2f0ef882,
     type: 3}
   flameJetDirection: {x: 0, y: -1}
-  flameJetInterval: 3
-  flameJetDuration: 1
+  flameJetInterval: 4
+  flameJetDuration: 2
