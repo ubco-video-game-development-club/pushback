@@ -15,6 +15,7 @@ public class FlameJet : MonoBehaviour
 
     public void SetFlameJetActive(bool isActive)
     {
+        GetComponent<Animator>().SetBool("IsActive", isActive);
         GetComponent<BoxCollider2D>().enabled = isActive;
         GetComponent<SpriteRenderer>().enabled = isActive;
     }

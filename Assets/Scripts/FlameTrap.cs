@@ -15,7 +15,7 @@ public class FlameTrap : MonoBehaviour
     void Start()
     {
         // Setup flame jet object
-        Quaternion rotation = Quaternion.FromToRotation(Vector2.right, flameJetDirection);
+        Quaternion rotation = Quaternion.FromToRotation(Vector2.down, flameJetDirection);
         Vector3 offset = flameJetDirection.normalized;
         flameJetObject = Instantiate(flameJetPrefab, transform.position + offset, rotation);
 
@@ -28,11 +28,8 @@ public class FlameTrap : MonoBehaviour
         while (isFlameTrapEnabled)
         {
             flameJetObject.SetFlameJetActive(true);
-            // Set flame jet animation active
             yield return new WaitForSeconds(flameJetDuration);
-            
             flameJetObject.SetFlameJetActive(false);
-            // Set flame jet animation inactive
             yield return new WaitForSeconds(flameJetInterval - flameJetDuration);
         }
     }
