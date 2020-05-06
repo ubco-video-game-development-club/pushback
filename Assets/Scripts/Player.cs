@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     public void Die()
     {
         alive = false;
+        animator.SetTrigger("Die");
         LevelController.instance.Lose();
     }
 
