@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        LevelController.instance.EndGame();
+        Player player;
+        if (col.TryGetComponent<Player>(out player))
+        {
+            LevelController.instance.Win();
+        }
     }
 }

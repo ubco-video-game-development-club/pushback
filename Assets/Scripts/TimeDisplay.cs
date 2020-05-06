@@ -17,8 +17,8 @@ public class TimeDisplay : MonoBehaviour
         textComponent.text = "Time: " + time.ToString("f1") + "s";
     }
 
-    public void SetCompleted()
+    public void SetCompleted(bool won)
     {
-        textComponent.color = Color.green;
+        textComponent.color = won ? Color.green : Color.red;
     }
 }
