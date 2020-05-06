@@ -1077,6 +1077,7 @@ MonoBehaviour:
   shockwaveMinSize: 1
   shockwaveMaxSize: 4
   shockwaveDistance: 6
+  shockwaveDelay: 0.4
   shockwaveCooldown: 1
 --- !u!61 &1413427922
 BoxCollider2D:

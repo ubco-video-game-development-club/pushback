@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public float shockwaveMinSize = 1f;
     public float shockwaveMaxSize = 1f;
     public float shockwaveDistance = 1f;
+    public float shockwaveDelay = 0.5f;
     public float shockwaveCooldown = 1f;
 
     private bool alive;
@@ -88,14 +89,17 @@ public class Player : MonoBehaviour
         {
             if (shockwaveTimer > shockwaveCooldown)
             {
-                SpawnShockwave();
+                animator.SetTrigger("Attack");
+                StartCoroutine(SpawnShockwave());
                 shockwaveTimer = 0;
             }
         }
     }
 
-    private void SpawnShockwave()
+    private IEnumerator SpawnShockwave()
     {
+        yield return new WaitForSeconds(shockwaveDelay);
+
         // Get direction to the mouse
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dirToMouse = mousePos - transform.position;
