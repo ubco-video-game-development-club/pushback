@@ -34,6 +34,12 @@ public class SpikeTrap : MonoBehaviour
             {
                 player.Die();
             }
+            
+            Enemy enemy;
+            if (col.TryGetComponent<Enemy>(out enemy))
+            {
+                enemy.Die();
+            }
         }
     }
 }

@@ -29,10 +29,12 @@ public class Enemy : MonoBehaviour
     private bool isAttackEnabled;
     private bool isBeingPushed;
     private Rigidbody2D rb2D;
+    private Animator animator;
 
     void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -56,6 +58,12 @@ public class Enemy : MonoBehaviour
         {
             CancelPush();
         }
+    }
+
+    public void Die()
+    {
+        LevelController.instance.AddScore(killScore);
+        Destroy(gameObject);
     }
 
     public void Push(Vector3 direction, int damage, float speed, float distance)
@@ -112,12 +120,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Die()
-    {
-        LevelController.instance.AddScore(killScore);
-        Destroy(gameObject);
-    }
-
     private void Move()
     {
         if (!isMovementEnabled || isBeingPushed)
@@ -126,7 +128,11 @@ public class Enemy : MonoBehaviour
         }
 
         float distToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        if (distToPlayer <= detectDistance && distToPlayer > attackDistance)
+        bool isMoving = distToPlayer <= detectDistance && distToPlayer > attackDistance;
+
+        animator.SetBool("IsMoving", isMoving);
+
+        if (isMoving)
         {
             float radiansDelta = Mathf.Lerp(minRotationSpeed, maxRotationSpeed, distToPlayer / detectDistance) * Mathf.Deg2Rad;
             Vector3 dirToPlayer = (player.transform.position - transform.position).normalized;
@@ -145,6 +151,7 @@ public class Enemy : MonoBehaviour
         float distToPlayer = Vector2.Distance(transform.position, player.transform.position);
         if (distToPlayer <= attackDistance)
         {
+            animator.SetTrigger("Attack");
             StartCoroutine(AttackCooldown());
             StartCoroutine(DelayedAttack());
         }
