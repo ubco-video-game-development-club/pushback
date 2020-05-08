@@ -17,8 +17,14 @@ public class TimeDisplay : MonoBehaviour
         textComponent.text = "Time: " + time.ToString("f1") + "s";
     }
 
-    public void SetCompleted(bool won)
+    public void SetGameOver(bool won)
     {
         textComponent.color = won ? Color.green : Color.red;
+    }
+
+    public void Reset()
+    {
+        textComponent.text = "Time: 0.0s";
+        textComponent.color = Color.white;
     }
 }

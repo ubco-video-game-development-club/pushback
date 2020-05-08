@@ -8,9 +8,6 @@ public class LevelController : MonoBehaviour
     public static LevelController instance;
 
     public string endMessage;
-    public ScoreDisplay scoreDisplay;
-    public TimeDisplay timeDisplay;
-    public MessageDisplay messageDisplay;
 
     private int totalScore;
     private float gameTimer;
@@ -19,11 +16,17 @@ public class LevelController : MonoBehaviour
     void Awake()
     {
         // Enforce a singleton pattern for the LevelController object
-        if (instance != null)
+        if (instance == null)
         {
-            Destroy(instance.gameObject);
+            Debug.Log("Becoming the new instance.");
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        instance = this;
+        else
+        {
+            Debug.Log("Instance found.");
+            Destroy(gameObject);
+        }
     }
 
     void Start()
@@ -36,33 +39,54 @@ public class LevelController : MonoBehaviour
         if (isTimerActive)
         {
             gameTimer += Time.deltaTime;
-            timeDisplay.SetTime(gameTimer);
+            HUD.instance.SetTime(gameTimer);
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            RestartGame();
         }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        isTimerActive = true;
+    }
+
+    public void RestartGame()
+    {
+        totalScore = 0;
+        gameTimer = 0;
+        HUD.instance.Reset();
+        SceneManager.LoadScene("Level1");
     }
 
     public void AddScore(int score)
     {
         totalScore += score;
-        scoreDisplay.SetScore(totalScore);
+        HUD.instance.SetScore(totalScore);
     }
 
     public void Win()
     {
         isTimerActive = false;
-        scoreDisplay.SetCompleted(true);
-        timeDisplay.SetCompleted(true);
-        messageDisplay.SetMessage(endMessage);
+        HUD.instance.SetGameOver(true);
+        HUD.instance.SetMessage(endMessage);
     }
 
     public void Lose()
     {
         isTimerActive = false;
-        scoreDisplay.SetCompleted(false);
-        timeDisplay.SetCompleted(false);
-        messageDisplay.SetMessage(endMessage);
+        HUD.instance.SetGameOver(false);
+        HUD.instance.SetMessage(endMessage);
     }
 }

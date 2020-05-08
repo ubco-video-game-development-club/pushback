@@ -17,8 +17,14 @@ public class ScoreDisplay : MonoBehaviour
         textComponent.text = "Score: " + score.ToString();
     }
 
-    public void SetCompleted(bool won)
+    public void SetGameOver(bool won)
     {
         textComponent.color = won ? Color.green : Color.red;
+    }
+
+    public void Reset()
+    {
+        textComponent.text = "Score: 0";
+        textComponent.color = Color.white;
     }
 }

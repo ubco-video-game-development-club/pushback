@@ -16,4 +16,9 @@ public class MessageDisplay : MonoBehaviour
     {
         textComponent.text = message;
     }
+
+    public void Reset()
+    {
+        textComponent.text = "";
+    }
 }
