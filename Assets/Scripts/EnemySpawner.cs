@@ -5,9 +5,12 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public Enemy enemyPrefab;
+    public int spawnCount = 1;
     public float spawnInterval = 1f;
 
     private bool isActive;
+    private int enemyCount;
+    private bool isEnemySpawned;
 
     void Start()
     {
@@ -15,16 +18,28 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemies());
     }
 
+    public void ClearCurrentEnemy()
+    {
+        isEnemySpawned = false;
+    }
+
     private IEnumerator SpawnEnemies()
     {
-        while (isActive)
+        while (isActive && enemyCount < spawnCount)
         {
-            bool isBlocked = Physics2D.OverlapBox(transform.position, Vector2.one, 0) != null;
-            if (!isBlocked)
+            bool isBlocked = Physics2D.OverlapBox(transform.position, Vector2.one, 0, LayerMask.NameToLayer("Main")) != null;
+            if (!isBlocked && !isEnemySpawned)
             {
-                Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+                isEnemySpawned = true;
+                Enemy enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+                enemy.BindToSpawner(this);
+                enemyCount++;
+                yield return new WaitForSeconds(spawnInterval);
             }
-            yield return new WaitForSeconds(spawnInterval);
+            else
+            {
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 }
