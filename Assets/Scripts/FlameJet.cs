@@ -11,6 +11,12 @@ public class FlameJet : MonoBehaviour
         {
             player.Die();
         }
+
+        Enemy enemy;
+        if (col.TryGetComponent<Enemy>(out enemy))
+        {
+            enemy.Die();
+        }
     }
 
     public void SetFlameJetActive(bool isActive)

@@ -5,6 +5,9 @@ using UnityEngine;
 public class Shockwave : MonoBehaviour
 {
     private Vector3 origin;
+    private int damage;
+    private float speed;
+    private float distance;
     private Rigidbody2D rb2D;
 
     void Awake()
@@ -12,9 +15,13 @@ public class Shockwave : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
     }
 
-    public void ActivateShockwave(Vector3 origin, Vector3 direction, float speed, float minSize, float maxSize, float distance)
+    public void ActivateShockwave(Vector3 origin, Vector3 direction, int damage, float speed, float minSize, float maxSize, float distance)
     {
         this.origin = origin;
+        this.damage = damage;
+        this.speed = speed;
+        this.distance = distance;
+
         rb2D.velocity = direction.normalized * speed;
         StartCoroutine(GrowOverDistance(minSize, maxSize, distance));
     }
@@ -34,7 +41,12 @@ public class Shockwave : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Hit!");
-        LevelController.instance.AddScore(25);
+        Enemy enemy;
+        if (col.gameObject.TryGetComponent<Enemy>(out enemy))
+        {
+            Vector3 direction = enemy.transform.position - origin;
+            float remainingDist = distance - Vector3.Distance(origin, enemy.transform.position);
+            enemy.Push(direction, damage, speed, remainingDist);
+        }
     }
 }

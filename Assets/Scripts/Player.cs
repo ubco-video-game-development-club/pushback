@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
 
     [Header("Shockwave Attack")]
     public Shockwave shockwavePrefab;
+    [Tooltip("Damage dealt per unit of distance the enemy is pushed.")]
+    public int shockwaveDamage = 1;
     public float shockwaveSpeed = 1f;
     public float shockwaveMinSize = 1f;
     public float shockwaveMaxSize = 1f;
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         alive = true;
+        shockwaveTimer = shockwaveCooldown;
     }
 
     void Update()
@@ -112,6 +115,7 @@ public class Player : MonoBehaviour
         shockwave.ActivateShockwave(
             transform.position,
             dirToMouse,
+            shockwaveDamage,
             shockwaveSpeed,
             shockwaveMinSize,
             shockwaveMaxSize,
