@@ -159,7 +159,7 @@ MonoBehaviour:
   minRotationSpeed: 15
   maxRotationSpeed: 60
   maxHealth: 5
-  detectDistance: 8
+  detectDistance: 7
   attackDistance: 1.2
   attackDelay: 0.4
   attackCooldown: 1

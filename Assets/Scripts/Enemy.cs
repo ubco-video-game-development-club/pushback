@@ -61,11 +61,6 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        if (!isBeingPushed)
-        {
-            rb2D.velocity = Vector2.zero;
-        }
-
         Move();
         Attack();
     }
