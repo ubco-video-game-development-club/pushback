@@ -21,26 +21,31 @@ public class Enemy : MonoBehaviour
     public float staggerDuration = 0.5f;
     public int killScore = 50;
     public int damageScore = 10;
+    public float deathDelay = 3f;
 
     private int health;
     private Vector3 direction;
     private Player player;
+    private bool alive;
     private bool isMovementEnabled;
     private bool isAttackEnabled;
     private bool isBeingPushed;
     private Rigidbody2D rb2D;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         direction = startDirection;
+        alive = true;
         isMovementEnabled = true;
         isAttackEnabled = true;
         health = maxHealth;
@@ -48,6 +53,11 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (!alive)
+        {
+            return;
+        }
+
         Move();
         Attack();
     }
@@ -63,13 +73,22 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         LevelController.instance.AddScore(killScore);
-        Destroy(gameObject);
+        animator.SetTrigger("Die");
+        alive = false;
+        StartCoroutine(FadeAway());
     }
 
     public void Push(Vector3 direction, int damage, float speed, float distance)
     {
+        if (isBeingPushed)
+        {
+            return;
+        }
+        
+        Debug.Log("I been pushed");
         rb2D.velocity = direction.normalized * speed;
         isBeingPushed = true;
+        animator.SetBool("IsBeingPushed", isBeingPushed);
         StartCoroutine(PushOverDistance(transform.position, damage, distance));
     }
 
@@ -84,10 +103,13 @@ public class Enemy : MonoBehaviour
 
         if (isBeingPushed)
         {
+            Debug.Log("Imma still being pushed here");
             CancelPush();
         }
         else
         {
+            Debug.Log("Distance: " + distPushed + " / " + distance);
+
             int distCount = Mathf.CeilToInt(distPushed);
             LevelController.instance.AddScore(damageScore * distCount);
 
@@ -97,18 +119,36 @@ public class Enemy : MonoBehaviour
 
     private void CancelPush()
     {
+        Debug.Log("CANCELLED");
         rb2D.velocity = Vector2.zero;
         isBeingPushed = false;
+        animator.SetBool("IsBeingPushed", isBeingPushed);
         StartCoroutine(Stagger());
     }
 
     private IEnumerator Stagger()
     {
+        animator.SetBool("IsStunned", true);
         isMovementEnabled = false;
         isAttackEnabled = false;
         yield return new WaitForSeconds(staggerDuration);
+        animator.SetBool("IsStunned", false);
         isMovementEnabled = true;
         isAttackEnabled = true;
+    }
+
+    private IEnumerator FadeAway()
+    {
+        Color fadeColor = spriteRenderer.color;
+        float t = 0;
+        while (t < deathDelay)
+        {
+            fadeColor.a = Mathf.Lerp(1f, 0, t / deathDelay);
+            spriteRenderer.color = fadeColor;
+            t += Time.deltaTime;
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 
     private void Damage(int damage)
