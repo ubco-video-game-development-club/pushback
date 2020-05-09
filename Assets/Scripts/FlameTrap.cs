@@ -26,6 +26,7 @@ public class FlameTrap : MonoBehaviour
 
     private IEnumerator FlameJetCycle()
     {
+        flameJetObject.SetFlameJetActive(false);
         yield return new WaitForSeconds(flameJetOffset);
         while (isFlameTrapEnabled)
         {
