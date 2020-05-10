@@ -26,6 +26,7 @@ public class Boss : MonoBehaviour
     public float deathDelay = 1f;
     public int deathScore = 100;
 
+    private bool alive;
     private bool isVulnerable;
     private Player player;
     private Animator animator;
@@ -41,6 +42,7 @@ public class Boss : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         circleCollider2D.radius = forceFieldRadius;
+        alive = true;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -69,7 +71,7 @@ public class Boss : MonoBehaviour
 
     public void TakeDamage()
     {
-        if (!isVulnerable)
+        if (!isVulnerable || !alive)
         {
             return;
         }
@@ -106,7 +108,7 @@ public class Boss : MonoBehaviour
     private IEnumerator WaveAttack()
     {
         yield return new WaitForSeconds(waveDelay);
-        while (isVulnerable)
+        while (isVulnerable && alive)
         {
             animator.SetTrigger("Attack");
             Vector3 dirToPlayer = (player.transform.position - transform.position).normalized;
@@ -120,6 +122,8 @@ public class Boss : MonoBehaviour
 
     private IEnumerator DeathSequence()
     {
+        alive = false;
+        circleCollider2D.enabled = false;
         animator.SetTrigger("Die");
         LevelController.instance.AddScore(deathScore);
         LevelController.instance.Win();
