@@ -30,13 +30,16 @@ public class Enemy : MonoBehaviour
     private bool isMovementEnabled;
     private bool isAttackEnabled;
     private bool isBeingPushed;
+    private EnemySpawner spawner;
     private Rigidbody2D rb2D;
+    private CircleCollider2D circleCollider2D;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
     void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        circleCollider2D = GetComponent<CircleCollider2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -64,6 +67,15 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        rb2D.velocity = Vector2.zero;
+        
+        Boss boss;
+        if (col.gameObject.TryGetComponent<Boss>(out boss))
+        {
+            Die();
+            return;
+        }
+
         if (isBeingPushed)
         {
             CancelPush();
@@ -73,9 +85,16 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         LevelController.instance.AddScore(killScore);
+        spawner.ClearCurrentEnemy();
         animator.SetTrigger("Die");
         alive = false;
+        circleCollider2D.enabled = false;
         StartCoroutine(FadeAway());
+    }
+
+    public void BindToSpawner(EnemySpawner spawner)
+    {
+        this.spawner = spawner;
     }
 
     public void Push(Vector3 direction, int damage, float speed, float distance)
@@ -85,7 +104,6 @@ public class Enemy : MonoBehaviour
             return;
         }
         
-        Debug.Log("I been pushed");
         rb2D.velocity = direction.normalized * speed;
         isBeingPushed = true;
         animator.SetBool("IsBeingPushed", isBeingPushed);
@@ -95,21 +113,20 @@ public class Enemy : MonoBehaviour
     private IEnumerator PushOverDistance(Vector3 start, int damage, float distance)
     {
         float distPushed = 0;
-        while (isBeingPushed && distPushed < distance)
+        float backupTimer = 0;
+        while (isBeingPushed && distPushed < distance && backupTimer < 5f)
         {
             yield return null;
             distPushed = Vector3.Distance(start, transform.position);
+            backupTimer += Time.deltaTime;
         }
 
         if (isBeingPushed)
         {
-            Debug.Log("Imma still being pushed here");
             CancelPush();
         }
         else
         {
-            Debug.Log("Distance: " + distPushed + " / " + distance);
-
             int distCount = Mathf.CeilToInt(distPushed);
             LevelController.instance.AddScore(damageScore * distCount);
 
@@ -119,7 +136,6 @@ public class Enemy : MonoBehaviour
 
     private void CancelPush()
     {
-        Debug.Log("CANCELLED");
         rb2D.velocity = Vector2.zero;
         isBeingPushed = false;
         animator.SetBool("IsBeingPushed", isBeingPushed);

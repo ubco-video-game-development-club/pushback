@@ -8,6 +8,7 @@ public class FlameTrap : MonoBehaviour
     public Vector2 flameJetDirection;
     public float flameJetInterval = 2f;
     public float flameJetDuration = 1f;
+    public float flameJetOffset = 0;
 
     private FlameJet flameJetObject;
     private bool isFlameTrapEnabled;
@@ -25,6 +26,8 @@ public class FlameTrap : MonoBehaviour
 
     private IEnumerator FlameJetCycle()
     {
+        flameJetObject.SetFlameJetActive(false);
+        yield return new WaitForSeconds(flameJetOffset);
         while (isFlameTrapEnabled)
         {
             flameJetObject.SetFlameJetActive(true);

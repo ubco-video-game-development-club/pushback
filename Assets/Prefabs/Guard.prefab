@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3782280548792854653}
   - component: {fileID: 2807896504799859319}
   - component: {fileID: 3782280548792854655}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Guard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 34c71fa62131fb046aca607ad2c202d8, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -116,7 +116,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 3782280548792854640}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 34c71fa62131fb046aca607ad2c202d8, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -159,10 +159,11 @@ MonoBehaviour:
   minRotationSpeed: 15
   maxRotationSpeed: 60
   maxHealth: 5
-  detectDistance: 8
+  detectDistance: 7
   attackDistance: 1.2
   attackDelay: 0.4
   attackCooldown: 1
   staggerDuration: 1
   killScore: 50
   damageScore: 10
+  deathDelay: 3

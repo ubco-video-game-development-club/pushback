@@ -8,11 +8,15 @@ public class Shockwave : MonoBehaviour
     private int damage;
     private float speed;
     private float distance;
+    private BoxCollider2D boxCollider2D;
     private Rigidbody2D rb2D;
+    private SpriteRenderer spriteRenderer;
 
     void Awake()
     {
+        boxCollider2D = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void ActivateShockwave(Vector3 origin, Vector3 direction, int damage, float speed, float minSize, float maxSize, float distance)
@@ -33,7 +37,8 @@ public class Shockwave : MonoBehaviour
         {
             float distTravelled = Vector3.Distance(transform.position, origin);
             size = Mathf.Lerp(minSize, maxSize, distTravelled / distance);
-            transform.localScale = new Vector3(0.5f, size, 1);
+            spriteRenderer.size = new Vector2(spriteRenderer.size.x, size);
+            boxCollider2D.size = new Vector2(boxCollider2D.size.x, size);
             yield return null;
         }
         Destroy(gameObject);
@@ -47,6 +52,19 @@ public class Shockwave : MonoBehaviour
             Vector3 direction = enemy.transform.position - origin;
             float remainingDist = distance - Vector3.Distance(origin, enemy.transform.position);
             enemy.Push(direction, damage, speed, remainingDist);
+        }
+
+        BossOrb orb;
+        if (col.gameObject.TryGetComponent<BossOrb>(out orb))
+        {
+            Vector3 direction = (orb.transform.position - origin).normalized;
+            orb.Reflect(direction);
+        }
+
+        Boss boss;
+        if (col.gameObject.TryGetComponent<Boss>(out boss))
+        {
+            boss.TakeDamage();
         }
     }
 }
