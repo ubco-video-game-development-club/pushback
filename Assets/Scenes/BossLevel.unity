@@ -4592,6 +4592,11 @@ PrefabInstance:
       propertyPath: boss
       value: 
       objectReference: {fileID: 1986007699}
+    - target: {fileID: 3085353562800919310, guid: 54be70d0bf670b24fa7729cd0d83578d,
+        type: 3}
+      propertyPath: orbDelay
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54be70d0bf670b24fa7729cd0d83578d, type: 3}
 --- !u!1001 &7156442869158944056
@@ -4636,6 +4641,11 @@ PrefabInstance:
       propertyPath: crystals.Array.data[3]
       value: 
       objectReference: {fileID: 1781447559}
+    - target: {fileID: 7156442867185520555, guid: 7b8d19bfa9b87a84789670b5be6ce903,
+        type: 3}
+      propertyPath: deathDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7156442867185520565, guid: 7b8d19bfa9b87a84789670b5be6ce903,
         type: 3}
       propertyPath: m_Name

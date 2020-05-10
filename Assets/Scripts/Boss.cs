@@ -20,9 +20,11 @@ public class Boss : MonoBehaviour
     public float bossRadius = 1.2f;
     public BossWave wavePrefab;
     public float waveSpeed = 1f;
+    public float waveDelay = 1f;
     public float waveInterval = 2f;
     public float waveSpawnOffset = 1f;
     public float deathDelay = 1f;
+    public int deathScore = 100;
 
     private bool isVulnerable;
     private Player player;
@@ -103,6 +105,7 @@ public class Boss : MonoBehaviour
 
     private IEnumerator WaveAttack()
     {
+        yield return new WaitForSeconds(waveDelay);
         while (isVulnerable)
         {
             animator.SetTrigger("Attack");
@@ -117,6 +120,9 @@ public class Boss : MonoBehaviour
 
     private IEnumerator DeathSequence()
     {
+        animator.SetTrigger("Die");
+        LevelController.instance.AddScore(deathScore);
+        LevelController.instance.Win();
         yield return new WaitForSeconds(deathDelay);
         Destroy(gameObject);
     }
