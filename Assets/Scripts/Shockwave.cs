@@ -48,5 +48,12 @@ public class Shockwave : MonoBehaviour
             float remainingDist = distance - Vector3.Distance(origin, enemy.transform.position);
             enemy.Push(direction, damage, speed, remainingDist);
         }
+
+        BossOrb orb;
+        if (col.gameObject.TryGetComponent<BossOrb>(out orb))
+        {
+            Vector3 direction = orb.transform.position - origin;
+            
+        }
     }
 }

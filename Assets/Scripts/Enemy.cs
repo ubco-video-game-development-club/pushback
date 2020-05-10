@@ -67,6 +67,15 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        rb2D.velocity = Vector2.zero;
+        
+        Boss boss;
+        if (col.gameObject.TryGetComponent<Boss>(out boss))
+        {
+            Die();
+            return;
+        }
+
         if (isBeingPushed)
         {
             CancelPush();

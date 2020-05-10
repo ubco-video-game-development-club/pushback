@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public Enemy enemyPrefab;
+    public bool unlimitedSpawns = false;
     public int spawnCount = 1;
     public float spawnInterval = 1f;
 
@@ -16,6 +17,11 @@ public class EnemySpawner : MonoBehaviour
     {
         isActive = true;
         StartCoroutine(SpawnEnemies());
+    }
+
+    public void SetSpawnerActive(bool isActive)
+    {
+        this.isActive = isActive;
     }
 
     public void ClearCurrentEnemy()
@@ -33,7 +39,10 @@ public class EnemySpawner : MonoBehaviour
                 isEnemySpawned = true;
                 Enemy enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
                 enemy.BindToSpawner(this);
-                enemyCount++;
+                if (!unlimitedSpawns)
+                {
+                    enemyCount++;
+                }
                 yield return new WaitForSeconds(spawnInterval);
             }
             else
