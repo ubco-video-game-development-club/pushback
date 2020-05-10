@@ -18,13 +18,11 @@ public class LevelController : MonoBehaviour
         // Enforce a singleton pattern for the LevelController object
         if (instance == null)
         {
-            Debug.Log("Becoming the new instance.");
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Debug.Log("Instance found.");
             Destroy(gameObject);
         }
     }

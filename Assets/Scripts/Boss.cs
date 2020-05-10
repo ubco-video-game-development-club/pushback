@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
     public ForceField forceField;
     public int forceFieldHealth = 5;
     public float forceFieldFadeTime = 1f;
+    public float forceFieldRadius = 1.5f;
 
     [Header("Phase 2")]
     public List<BossCrystal> crystals;
@@ -16,6 +17,7 @@ public class Boss : MonoBehaviour
 
     [Header("Phase 3")]
     public int bossHealth = 10;
+    public float bossRadius = 1.2f;
     public BossWave wavePrefab;
     public float waveSpeed = 1f;
     public float waveInterval = 2f;
@@ -24,10 +26,19 @@ public class Boss : MonoBehaviour
 
     private bool isVulnerable;
     private Player player;
+    private Animator animator;
+    private CircleCollider2D circleCollider2D;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+        circleCollider2D = GetComponent<CircleCollider2D>();
+    }
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        circleCollider2D.radius = forceFieldRadius;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -40,14 +51,6 @@ public class Boss : MonoBehaviour
                 DamageForceField();
             }
         }
-        else
-        {
-            Shockwave shockwave;
-            if (col.gameObject.TryGetComponent<Shockwave>(out shockwave))
-            {
-                TakeDamage();
-            }
-        }
     }
 
     public void BreakCrystal()
@@ -56,29 +59,20 @@ public class Boss : MonoBehaviour
         if (crystalCount <= 0)
         {
             isVulnerable = true;
+            circleCollider2D.enabled = true;
+            circleCollider2D.radius = bossRadius;
+            StartCoroutine(WaveAttack());
         }
     }
 
-    private void DamageForceField()
+    public void TakeDamage()
     {
-        forceFieldHealth--;
-        if (forceFieldHealth <= 0)
+        if (!isVulnerable)
         {
-            foreach (EnemySpawner spawner in spawners)
-            {
-                spawner.SetSpawnerActive(false);
-            }
-            forceField.Break(forceFieldFadeTime);
-
-            foreach (BossCrystal crystal in crystals)
-            {
-                crystal.ActivateCrystal();
-            }
+            return;
         }
-    }
 
-    private void TakeDamage()
-    {
+        animator.SetTrigger("Damage");
         bossHealth--;
         if (bossHealth <= 0)
         {
@@ -86,11 +80,33 @@ public class Boss : MonoBehaviour
         }
     }
 
+    private void DamageForceField()
+    {
+        animator.SetTrigger("Damage");
+        forceFieldHealth--;
+        if (forceFieldHealth <= 0)
+        {
+            foreach (EnemySpawner spawner in spawners)
+            {
+                spawner.SetSpawnerActive(false);
+                spawner.DespawnEnemy();
+            }
+            forceField.Break(forceFieldFadeTime);
+
+            foreach (BossCrystal crystal in crystals)
+            {
+                crystal.ActivateCrystal();
+            }
+            circleCollider2D.enabled = false;
+        }
+    }
+
     private IEnumerator WaveAttack()
     {
         while (isVulnerable)
         {
-            Vector3 dirToPlayer = player.transform.position - transform.position;
+            animator.SetTrigger("Attack");
+            Vector3 dirToPlayer = (player.transform.position - transform.position).normalized;
             Quaternion rotation = Quaternion.FromToRotation(Vector3.left, dirToPlayer);
             Vector3 offset = dirToPlayer * waveSpawnOffset;
             BossWave wave = Instantiate(wavePrefab, transform.position + offset, rotation);

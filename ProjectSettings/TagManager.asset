@@ -13,13 +13,13 @@ TagManager:
   - UI
   - 
   - 
-  - Main
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Boss
+  - Environment
+  - Enemy
+  - Pit
+  - EnemyProjectile
+  - PlayerProjectile
   - 
   - 
   - 

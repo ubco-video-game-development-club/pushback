@@ -443,6 +443,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlameTrap
       objectReference: {fileID: 0}
+    - target: {fileID: 6839570779565850248, guid: 065bbd879e434a4498b4e0160978432b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6839570779565850250, guid: 065bbd879e434a4498b4e0160978432b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -767,6 +772,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FlameTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6839570779565850248, guid: 065bbd879e434a4498b4e0160978432b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6839570779565850250, guid: 065bbd879e434a4498b4e0160978432b,
         type: 3}
@@ -1226,7 +1236,7 @@ GameObject:
   - component: {fileID: 682452918}
   - component: {fileID: 682452917}
   - component: {fileID: 682452916}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collideable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4215,6 +4225,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlameTrap
       objectReference: {fileID: 0}
+    - target: {fileID: 6839570779565850248, guid: 065bbd879e434a4498b4e0160978432b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6839570779565850250, guid: 065bbd879e434a4498b4e0160978432b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5074,6 +5089,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlameTrap
       objectReference: {fileID: 0}
+    - target: {fileID: 6839570779565850248, guid: 065bbd879e434a4498b4e0160978432b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6839570779565850250, guid: 065bbd879e434a4498b4e0160978432b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5638,6 +5658,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FlameTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6839570779565850248, guid: 065bbd879e434a4498b4e0160978432b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6839570779565850250, guid: 065bbd879e434a4498b4e0160978432b,
         type: 3}
@@ -9671,6 +9696,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlameTrap
       objectReference: {fileID: 0}
+    - target: {fileID: 6839570779565850248, guid: 065bbd879e434a4498b4e0160978432b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6839570779565850250, guid: 065bbd879e434a4498b4e0160978432b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9836,6 +9866,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlameTrap
       objectReference: {fileID: 0}
+    - target: {fileID: 6839570779565850248, guid: 065bbd879e434a4498b4e0160978432b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6839570779565850250, guid: 065bbd879e434a4498b4e0160978432b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9995,6 +10030,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FlameTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6839570779565850248, guid: 065bbd879e434a4498b4e0160978432b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6839570779565850250, guid: 065bbd879e434a4498b4e0160978432b,
         type: 3}

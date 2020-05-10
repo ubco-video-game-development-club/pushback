@@ -13,10 +13,12 @@ public class BossCrystal : MonoBehaviour
 
     private Player player;
     private bool isCrystalActive;
+    private Animator animator;
     private BoxCollider2D boxCollider2D;
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
         boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
@@ -26,15 +28,15 @@ public class BossCrystal : MonoBehaviour
         isCrystalActive = true;
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         BossOrb orb;
-        if (col.gameObject.TryGetComponent<BossOrb>(out orb))
+        if (col.TryGetComponent<BossOrb>(out orb))
         {
             if (orb.IsReflected())
             {
                 boss.BreakCrystal();
-                StartCoroutine(Explode());
+                StartCoroutine(Break());
             }
         }
     }
@@ -49,7 +51,7 @@ public class BossCrystal : MonoBehaviour
         yield return new WaitForSeconds(orbDelay);
         while (isCrystalActive)
         {
-            Vector3 dirToPlayer = player.transform.position - transform.position;
+            Vector3 dirToPlayer = (player.transform.position - transform.position).normalized;
             Quaternion rotation = Quaternion.FromToRotation(Vector3.left, dirToPlayer);
             Vector3 offset = dirToPlayer * orbSpawnOffset;
             BossOrb orb = Instantiate(orbPrefab, transform.position + offset, rotation);
@@ -58,8 +60,9 @@ public class BossCrystal : MonoBehaviour
         }
     }
 
-    private IEnumerator Explode()
+    private IEnumerator Break()
     {
+        animator.SetTrigger("Break");
         boxCollider2D.enabled = false;
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);

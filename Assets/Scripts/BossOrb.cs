@@ -5,11 +5,13 @@ using UnityEngine;
 public class BossOrb : MonoBehaviour
 {
     private bool isReflected;
+    private Animator animator;
     private Rigidbody2D rb2D;
     private BoxCollider2D boxCollider2D;
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
     }
@@ -30,9 +32,16 @@ public class BossOrb : MonoBehaviour
         }
     }
 
-    public void Reflect()
+    public void Reflect(Vector3 direction)
     {
-        rb2D.velocity = -rb2D.velocity;
+        float speed = rb2D.velocity.magnitude;
+        rb2D.velocity = direction * speed;
+
+        transform.rotation = Quaternion.FromToRotation(Vector3.left, direction);
+
+        gameObject.layer = LayerMask.NameToLayer("PlayerProjectile");
+
+        animator.SetTrigger("Reflect");
         isReflected = true;
     }
 
@@ -43,6 +52,7 @@ public class BossOrb : MonoBehaviour
 
     private IEnumerator Explode()
     {
+        animator.SetTrigger("Explode");
         boxCollider2D.enabled = false;
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);

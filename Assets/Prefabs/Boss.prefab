@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7156442867185520552}
   - component: {fileID: 7156442867185520554}
   - component: {fileID: 7156442867185520555}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1913947151
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1731036344737394794, guid: 4154c4632b5b38a41a7760fe6609518c,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -133,7 +133,7 @@ Animator:
   m_GameObject: {fileID: 7156442867185520565}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3b077c672a468044fae78785e4deb8ac, type: 2}
+  m_Controller: {fileID: 9100000, guid: bddddc64590239d40868e081f2800aa9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -158,14 +158,20 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   forceField: {fileID: 0}
-  forceFieldHealth: 5
+  forceFieldHealth: 4
   forceFieldFadeTime: 1
-  crystals: []
+  forceFieldRadius: 1.5
+  crystals:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   crystalCount: 4
-  bossHealth: 10
+  bossHealth: 8
+  bossRadius: 1.2
   wavePrefab: {fileID: 9091621629906972483, guid: 8f7794095dd6de54dbd3d0fe5411c04b,
     type: 3}
-  waveSpeed: 1
-  waveInterval: 2
-  waveSpawnOffset: 1
+  waveSpeed: 4
+  waveInterval: 0.8
+  waveSpawnOffset: 1.6
   deathDelay: 1

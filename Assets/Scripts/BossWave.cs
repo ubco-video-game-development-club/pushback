@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class BossWave : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    private Animator animator;
+    private Rigidbody2D rb2D;
 
-    void Update()
+    void Awake()
     {
-        
+        animator = GetComponent<Animator>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -22,6 +21,18 @@ public class BossWave : MonoBehaviour
             player.Die();
         }
 
+        Shockwave shockwave;
+        if (!col.TryGetComponent<Shockwave>(out shockwave))
+        {
+            rb2D.velocity = Vector2.zero;
+            StartCoroutine(FadeAway());
+        }
+    }
+
+    private IEnumerator FadeAway()
+    {
+        animator.SetTrigger("Explode");
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }

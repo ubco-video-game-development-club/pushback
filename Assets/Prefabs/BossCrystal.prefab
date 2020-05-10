@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3085353562800919308}
   - component: {fileID: 3085353562800919299}
   - component: {fileID: 3085353562800919310}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BossCrystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1913947151
   m_SortingLayer: 2
-  m_SortingOrder: 3
-  m_Sprite: {fileID: 1388473785792707320, guid: 95bbb128d7e35a14f926aef68caef4a3,
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 4607259963451684628, guid: 66e6d02d530bde646af4ebfea9e42ded,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -117,21 +117,21 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 3}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 3, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
 --- !u!95 &3085353562800919299
 Animator:
@@ -143,7 +143,7 @@ Animator:
   m_GameObject: {fileID: 3085353562800919296}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7d38887db3091bd46b0183d500360d10, type: 2}
+  m_Controller: {fileID: 9100000, guid: 51c12d42524db66468b9b6b63f253660, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   boss: {fileID: 0}
   orbPrefab: {fileID: 4524799669912998240, guid: 9c5b5622582937f4fbc2896f4b4057da,
     type: 3}
-  orbSpeed: 3
+  orbSpeed: 5
   orbDelay: 0
   orbInterval: 2
-  orbSpawnOffset: 1
+  orbSpawnOffset: 0.6

@@ -52,8 +52,14 @@ public class Shockwave : MonoBehaviour
         BossOrb orb;
         if (col.gameObject.TryGetComponent<BossOrb>(out orb))
         {
-            Vector3 direction = orb.transform.position - origin;
-            
+            Vector3 direction = (orb.transform.position - origin).normalized;
+            orb.Reflect(direction);
+        }
+
+        Boss boss;
+        if (col.gameObject.TryGetComponent<Boss>(out boss))
+        {
+            boss.TakeDamage();
         }
     }
 }
