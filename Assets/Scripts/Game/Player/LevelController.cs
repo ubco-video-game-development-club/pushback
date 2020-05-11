@@ -49,7 +49,14 @@ public class LevelController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PauseGame();
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
         }
     }
 
@@ -68,10 +75,7 @@ public class LevelController : MonoBehaviour
         levelStartScore = totalScore;
         levelStartTime = gameTimer;
         isTimerActive = true;
-        if (isPaused)
-        {
-            ResumeGame();
-        }
+        ResumeGame();
     }
 
     public void PauseGame()

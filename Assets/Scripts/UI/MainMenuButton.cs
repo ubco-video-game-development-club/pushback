@@ -7,6 +7,7 @@ public class MainMenuButton : MonoBehaviour
 {
     public void LoadMainMenu()
     {
+        LevelController.instance.ResumeGame();
         LevelController.instance.CloseGameInstance();
         SceneManager.LoadScene("MainMenu");
     }
