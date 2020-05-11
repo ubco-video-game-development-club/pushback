@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     public int killScore = 50;
     public int damageScore = 10;
     public float deathDelay = 3f;
+    public Vector2 floatyTextOffset;
 
     private int health;
     private Vector3 direction;
@@ -169,6 +170,9 @@ public class Enemy : MonoBehaviour
 
     private void Damage(int damage)
     {
+        Vector3 offset = floatyTextOffset;
+        HUD.instance.CreateFloatyText(transform.position + offset, "-" + damage);
+        
         health -= damage;
         if (health <= 0)
         {

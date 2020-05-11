@@ -119,6 +119,8 @@ MonoBehaviour:
   timeDisplay: {fileID: 14286723937521430}
   messageDisplay: {fileID: 14286724436376581}
   pauseMenu: {fileID: 2357845054165815290}
+  floatyTextPrefab: {fileID: 2986474971271424051, guid: 69edc7bd5d4bad64f8d47fa0f21456c0,
+    type: 3}
 --- !u!1 &14286723937521426
 GameObject:
   m_ObjectHideFlags: 0

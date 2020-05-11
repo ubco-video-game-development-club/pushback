@@ -10,6 +10,7 @@ public class HUD : MonoBehaviour
     public TimeDisplay timeDisplay;
     public MessageDisplay messageDisplay;
     public CanvasGroup pauseMenu;
+    public FloatyText floatyTextPrefab;
 
     void Awake()
     {
@@ -41,6 +42,13 @@ public class HUD : MonoBehaviour
     {
         HUD.instance = null;
         Destroy(gameObject);
+    }
+
+    public void CreateFloatyText(Vector3 position, string text)
+    {
+        Debug.Log(position);
+        FloatyText floatyText = Instantiate(floatyTextPrefab, position, Quaternion.identity);
+        floatyText.DisplayText(text);
     }
 
     public void SetTime(float time)
