@@ -11,7 +11,10 @@ public class LevelController : MonoBehaviour
 
     private int totalScore;
     private float gameTimer;
+    private int levelStartScore;
+    private float levelStartTime;
     private bool isTimerActive;
+    private bool isPaused;
 
     void Awake()
     {
@@ -41,7 +44,12 @@ public class LevelController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            RestartGame();
+            ResetLevel();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
         }
     }
 
@@ -57,7 +65,35 @@ public class LevelController : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        levelStartScore = totalScore;
+        levelStartTime = gameTimer;
         isTimerActive = true;
+        if (isPaused)
+        {
+            ResumeGame();
+        }
+    }
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        Time.timeScale = 0;
+        HUD.instance.Pause();
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        HUD.instance.Resume();
+    }
+
+    public void ResetLevel()
+    {
+        totalScore = levelStartScore;
+        gameTimer = levelStartTime;
+        HUD.instance.Reset();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void RestartGame()
@@ -66,6 +102,13 @@ public class LevelController : MonoBehaviour
         gameTimer = 0;
         HUD.instance.Reset();
         SceneManager.LoadScene("Level1");
+    }
+
+    public void CloseGameInstance()
+    {
+        HUD.instance.CloseHUDInstance();
+        LevelController.instance = null;
+        Destroy(gameObject);
     }
 
     public void AddScore(int score)

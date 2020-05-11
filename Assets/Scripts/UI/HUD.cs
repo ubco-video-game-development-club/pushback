@@ -9,6 +9,7 @@ public class HUD : MonoBehaviour
     public ScoreDisplay scoreDisplay;
     public TimeDisplay timeDisplay;
     public MessageDisplay messageDisplay;
+    public CanvasGroup pauseMenu;
 
     void Awake()
     {
@@ -22,6 +23,24 @@ public class HUD : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Pause()
+    {
+        pauseMenu.GetComponent<Animator>().SetBool("IsVisible", true);
+        pauseMenu.interactable = true;
+    }
+
+    public void Resume()
+    {
+        pauseMenu.GetComponent<Animator>().SetBool("IsVisible", false);
+        pauseMenu.interactable = false;
+    }
+
+    public void CloseHUDInstance()
+    {
+        HUD.instance = null;
+        Destroy(gameObject);
     }
 
     public void SetTime(float time)
