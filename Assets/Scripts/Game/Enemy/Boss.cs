@@ -126,8 +126,8 @@ public class Boss : MonoBehaviour
         circleCollider2D.enabled = false;
         animator.SetTrigger("Die");
         LevelController.instance.AddScore(deathScore);
-        LevelController.instance.Win();
         yield return new WaitForSeconds(deathDelay);
+        LevelController.instance.Win();
         Destroy(gameObject);
     }
 }

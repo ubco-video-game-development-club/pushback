@@ -10,6 +10,8 @@ public class HUD : MonoBehaviour
     public TimeDisplay timeDisplay;
     public MessageDisplay messageDisplay;
     public CanvasGroup pauseMenu;
+    public CanvasGroup winMenu;
+    public CanvasGroup loseMenu;
     public FloatyText floatyTextPrefab;
 
     void Awake()
@@ -26,16 +28,28 @@ public class HUD : MonoBehaviour
         }
     }
 
+    public void Win()
+    {
+        EnableMenu(winMenu, true);
+        SetGameOver(true);
+    }
+
+    public void Lose()
+    {
+        EnableMenu(loseMenu, true);
+        SetGameOver(false);
+    }
+
     public void Pause()
     {
-        pauseMenu.GetComponent<Animator>().SetBool("IsVisible", true);
-        pauseMenu.interactable = true;
+        EnableMenu(pauseMenu, true);
     }
 
     public void Resume()
     {
-        pauseMenu.GetComponent<Animator>().SetBool("IsVisible", false);
-        pauseMenu.interactable = false;
+        EnableMenu(winMenu, false);
+        EnableMenu(loseMenu, false);
+        EnableMenu(pauseMenu, false);
     }
 
     public void CloseHUDInstance()
@@ -46,7 +60,6 @@ public class HUD : MonoBehaviour
 
     public void CreateFloatyText(Vector3 position, string text)
     {
-        Debug.Log(position);
         FloatyText floatyText = Instantiate(floatyTextPrefab, position, Quaternion.identity);
         floatyText.DisplayText(text);
     }
@@ -77,5 +90,12 @@ public class HUD : MonoBehaviour
         timeDisplay.Reset();
         scoreDisplay.Reset();
         messageDisplay.Reset();
+    }
+
+    private void EnableMenu(CanvasGroup menu, bool enabled)
+    {
+        menu.GetComponent<Animator>().SetBool("IsVisible", enabled);
+        menu.interactable = enabled;
+        menu.blocksRaycasts = enabled;
     }
 }

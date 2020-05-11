@@ -7,7 +7,8 @@ public class LevelController : MonoBehaviour
 {
     public static LevelController instance;
 
-    public string endMessage;
+    public string winMessage;
+    public string loseMessage;
 
     private int totalScore;
     private float gameTimer;
@@ -15,6 +16,7 @@ public class LevelController : MonoBehaviour
     private float levelStartTime;
     private bool isTimerActive;
     private bool isPaused;
+    private bool won;
 
     void Awake()
     {
@@ -42,9 +44,17 @@ public class LevelController : MonoBehaviour
             gameTimer += Time.deltaTime;
             HUD.instance.SetTime(gameTimer);
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            ResetLevel();
+            if (won)
+            {
+                RestartGame();
+            }
+            else
+            {
+                ResetLevel();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -74,6 +84,8 @@ public class LevelController : MonoBehaviour
     {
         levelStartScore = totalScore;
         levelStartTime = gameTimer;
+        won = false;
+        isPaused = false;
         isTimerActive = true;
         ResumeGame();
     }
@@ -123,15 +135,21 @@ public class LevelController : MonoBehaviour
 
     public void Win()
     {
+        won = true;
+        isPaused = true;
+        Time.timeScale = 0;
         isTimerActive = false;
-        HUD.instance.SetGameOver(true);
-        HUD.instance.SetMessage(endMessage);
+        HUD.instance.Win();
+        HUD.instance.SetMessage(winMessage);
     }
 
     public void Lose()
     {
+        won = false;
+        isPaused = true;
+        Time.timeScale = 0;
         isTimerActive = false;
-        HUD.instance.SetGameOver(false);
-        HUD.instance.SetMessage(endMessage);
+        HUD.instance.Lose();
+        HUD.instance.SetMessage(loseMessage);
     }
 }

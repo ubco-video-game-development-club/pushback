@@ -4644,7 +4644,7 @@ PrefabInstance:
     - target: {fileID: 7156442867185520555, guid: 7b8d19bfa9b87a84789670b5be6ce903,
         type: 3}
       propertyPath: deathDelay
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7156442867185520555, guid: 7b8d19bfa9b87a84789670b5be6ce903,
         type: 3}

@@ -77,9 +77,13 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        if (isBeingPushed)
+        Player p;
+        if (!col.gameObject.TryGetComponent<Player>(out p))
         {
-            CancelPush();
+            if (isBeingPushed)
+            {
+                CancelPush();
+            }
         }
     }
 
