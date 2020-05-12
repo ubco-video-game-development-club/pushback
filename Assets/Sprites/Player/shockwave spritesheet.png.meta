@@ -11,6 +11,18 @@ TextureImporter:
   - first:
       213: -4920018193314288728
     second: shockwave spritesheet_2
+  - first:
+      213: -2190085316794072443
+    second: shockwave spritesheet_0
+  - first:
+      213: -694876140219808393
+    second: shockwave spritesheet_1
+  - first:
+      213: 303153774335851626
+    second: shockwave spritesheet_2
+  - first:
+      213: -8061339254985854107
+    second: shockwave spritesheet_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,13 +117,13 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 15, y: 30, z: 9, w: 30}
+      border: {x: 0, y: 3, z: 0, w: 4}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb2e96b95d11aa500800000000000000
-      internalID: 408158325363565243
+      spriteID: 582c0b802014b91e0800000000000000
+      internalID: -2190085316794072443
       vertices: []
       indices: 
       edges: []
@@ -126,13 +138,13 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 8, y: 30, z: 3, w: 30}
+      border: {x: 0, y: 2, z: 0, w: 3}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e832018aba5b72d0800000000000000
-      internalID: -3279928146534450968
+      spriteID: 775cd4305dd4b56f0800000000000000
+      internalID: -694876140219808393
       vertices: []
       indices: 
       edges: []
@@ -147,13 +159,34 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 15, y: 30, z: 9, w: 30}
+      border: {x: 0, y: 2, z: 0, w: 3}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8abea03458598bbb0800000000000000
-      internalID: -4920018193314288728
+      spriteID: a6c7b9760c4053400800000000000000
+      internalID: 303153774335851626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shockwave spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 2, z: 0, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 563f7ac88ae502090800000000000000
+      internalID: -8061339254985854107
       vertices: []
       indices: 
       edges: []
