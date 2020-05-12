@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2422450870761182781}
   - component: {fileID: 4172037974050144210}
   - component: {fileID: 3352776717205982845}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FlameJet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

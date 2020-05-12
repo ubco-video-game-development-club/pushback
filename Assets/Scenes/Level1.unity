@@ -375,11 +375,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlameTrap
       objectReference: {fileID: 0}
-    - target: {fileID: 6839570779565850248, guid: 065bbd879e434a4498b4e0160978432b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6839570779565850250, guid: 065bbd879e434a4498b4e0160978432b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -459,11 +454,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FlameTrap
-      objectReference: {fileID: 0}
-    - target: {fileID: 6839570779565850248, guid: 065bbd879e434a4498b4e0160978432b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6839570779565850250, guid: 065bbd879e434a4498b4e0160978432b,
         type: 3}
@@ -1215,11 +1205,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FlameTrap
-      objectReference: {fileID: 0}
-    - target: {fileID: 6839570779565850248, guid: 065bbd879e434a4498b4e0160978432b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6839570779565850250, guid: 065bbd879e434a4498b4e0160978432b,
         type: 3}
@@ -3473,11 +3458,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FlameTrap
-      objectReference: {fileID: 0}
-    - target: {fileID: 6839570779565850248, guid: 065bbd879e434a4498b4e0160978432b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6839570779565850250, guid: 065bbd879e434a4498b4e0160978432b,
         type: 3}
