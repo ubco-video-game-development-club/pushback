@@ -99,7 +99,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.7
+    - _Speed: 0.5
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 1
@@ -109,8 +109,8 @@ Material:
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Offset: {r: 0.05, g: 0.05, b: 0, a: 0}
+    - _Offset: {r: 0.02, g: 0.02, b: 0, a: 0}
     - _Scale: {r: 0.09, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _Tile: {r: 1, g: 1, b: 0, a: 0}
-    - _Tiling: {r: 1, g: 0.2, b: 0, a: 0}
+    - _Tiling: {r: 2, g: 2, b: 0, a: 0}
