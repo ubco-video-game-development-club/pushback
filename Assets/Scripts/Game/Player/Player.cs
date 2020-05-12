@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Movement")]
     public float movementSpeed = 1f;
-
-    [Header("Shockwave Attack")]
     public Shockwave shockwavePrefab;
     [Tooltip("Damage dealt per unit of distance the enemy is pushed.")]
     public int shockwaveDamage = 1;
@@ -17,6 +14,7 @@ public class Player : MonoBehaviour
     public float shockwaveDistance = 1f;
     public float shockwaveDelay = 0.5f;
     public float shockwaveCooldown = 1f;
+    public float loseDelay = 1f;
 
     private bool alive;
     private float shockwaveTimer;
@@ -48,6 +46,12 @@ public class Player : MonoBehaviour
     {
         alive = false;
         animator.SetTrigger("Die");
+        StartCoroutine(Lose());
+    }
+
+    private IEnumerator Lose()
+    {
+        yield return new WaitForSeconds(loseDelay);
         LevelController.instance.Lose();
     }
 
