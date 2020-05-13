@@ -8,4 +8,5 @@ This project has been split into sub-projects for each day of the 7-day challeng
 
 ## Contributors
 Art by Megan Nguyen
+
 Gameplay by Jaden Balogh
