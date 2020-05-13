@@ -1,4 +1,4 @@
-# Pushback
+# Ruins of Tyrrazza
 *Ruins of Tyrrazza* is a medieval top-down adventure game where you must vanquish an ancient evil deep in the ruins of a lost city. Wield the power of pure force as a mystical warlock against deadly traps and unrelenting enemies in this intense fantasy experience.
 
 ## 7-Day Challenge Features
