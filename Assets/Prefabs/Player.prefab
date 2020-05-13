@@ -173,3 +173,4 @@ MonoBehaviour:
   shockwaveDistance: 8
   shockwaveDelay: 0.4
   shockwaveCooldown: 2
+  loseDelay: 2
