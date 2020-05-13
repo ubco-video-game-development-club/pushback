@@ -43,7 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3075c630d7118a4fb08fb9b0ffc2f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endMessage: Press 'space' to restart!
-  scoreDisplay: {fileID: 0}
-  timeDisplay: {fileID: 0}
-  messageDisplay: {fileID: 0}
+  winMessage: Press 'space' to play again!
+  loseMessage: Press 'space' to restart this level
