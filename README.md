@@ -3,6 +3,8 @@
 
 Download the game [here](https://github.com/ubco-video-game-development-club/ruins-of-tyrrazza/releases/tag/v1.0).
 
+![Ruins of Tyrrazza gameplay](RuinsOfTyrrazzaGameplay.gif)
+
 ## 7-Day Challenge Features
 Ruins of Tyrrazza (known as Pushback during development) is the example project for the UBCO Video Game Development Club's 7-day challenge.
 
